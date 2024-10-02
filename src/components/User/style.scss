@@ -1,0 +1,97 @@
+.user-card {
+  position: relative; /* Ensure the dropdown is positioned relative to the card */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  min-height: 170px;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .user-card__avatar {
+    width: 50px;
+    height: auto;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .user-card__info {
+    flex-grow: 1;
+    margin-left: 16px;
+  }
+
+  .user-card__name {
+    font-weight: bold;
+    color: #3498db;
+    font-size: 1rem;
+  }
+
+  .user-card__status {
+    color: grey;
+    font-size: 0.9rem;
+  }
+
+  .user-card__location {
+    color: grey;
+    font-size: 0.8rem;
+  }
+
+  .user-card__dropdown {
+    position: absolute;
+    top: 20px;
+    right: 16px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    width: 120px;
+    padding: 8px 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &__dropdown.visible {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  &__dropdown ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__dropdown li {
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  &__dropdown li:hover {
+    background-color: #f0f0f0;
+  }
+
+  &__menu {
+    background: none;
+    border: none;
+    display: block;
+    cursor: pointer;
+    transform: translateY(-45px);
+  }
+
+  &__menu-dot {
+    width: 4px;
+    height: 4px;
+    margin: 2px 2px;
+    background-color: #333;
+    border-radius: 50%;
+  }
+}
