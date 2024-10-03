@@ -60,6 +60,10 @@
     font-weight: 600;
     line-height: 27.32px;
     margin-bottom: 10px;
+    overflow: hidden;
+    @media (max-width: 768px) {
+      max-width: 100px;
+    }
   }
 
   &__status {

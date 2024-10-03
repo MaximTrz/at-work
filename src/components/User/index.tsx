@@ -28,6 +28,8 @@ const UserCard: React.FC<{ user: IUser }> = ({ user }) => {
     setMenuVisible(false);
   };
 
+  const userName = user.username.substring(0, 20);
+
   const classes = classNames({
     'user-card': true,
     '--archive': user.archive,
@@ -41,7 +43,7 @@ const UserCard: React.FC<{ user: IUser }> = ({ user }) => {
 
       <div className="user-card__info">
         <div className="user-card__info-top">
-          <div className="user-card__name">{user.username.substring(0, 12)}</div>
+          <div className="user-card__name">{userName}</div>
           <div className="user-card__status">{user.company.name}</div>
         </div>
         <div className="user-card__location">{user.address.city}</div>

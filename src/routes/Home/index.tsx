@@ -1,12 +1,6 @@
 import React from 'react';
-import Counter from '../../components/partials/Home/Counter';
-import Quote from '../../components/shareds/Quote';
+import Users from '../../components/partials/Users';
 
-const Home = () => (
-  <div className="Home">
-    <Counter />
-    <Quote />
-  </div>
-);
+const Home = () => <Users />;
 
 export default Home;
