@@ -1,4 +1,4 @@
-export default interface UserCardType {
+export default interface IUser {
   id: string;
   username: string;
   address: {
@@ -8,4 +8,6 @@ export default interface UserCardType {
     name: string;
   };
   avatar: string;
+  archive: boolean;
+  visible: boolean;
 }

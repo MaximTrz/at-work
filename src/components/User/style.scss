@@ -1,5 +1,5 @@
 .user-card {
-  position: relative; /* Ensure the dropdown is positioned relative to the card */
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -10,39 +10,73 @@
   transition: box-shadow 0.3s ease;
   min-height: 170px;
 
+  @media (max-width: 768px) {
+    display: block;
+  }
+
+  &.--archive {
+    filter: grayscale(100%);
+  }
+
   &:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
 
-  .user-card__avatar {
-    width: 50px;
-    height: auto;
-    border-radius: 50%;
-    object-fit: cover;
+  &__avatar-wrapper {
+    height: 100%;
+    width: 112px;
+    overflow: hidden;
+    @media (max-width: 768px) {
+      height: auto;
+      width: 112px;
+      margin: 0 auto;
+    }
   }
 
-  .user-card__info {
+  &__avatar {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
     flex-grow: 1;
     margin-left: 16px;
+    height: 100%;
+    @media (max-width: 768px) {
+      height: auto;
+      margin-left: 0;
+    }
   }
 
-  .user-card__name {
-    font-weight: bold;
-    color: #3498db;
-    font-size: 1rem;
+  &__name {
+    color: rgba(34, 160, 188, 1);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 27.32px;
+    margin-bottom: 10px;
   }
 
-  .user-card__status {
-    color: grey;
-    font-size: 0.9rem;
+  &__status {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 21.86px;
+    color: rgba(89, 89, 89, 1);
   }
 
-  .user-card__location {
-    color: grey;
-    font-size: 0.8rem;
+  &__location {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 19.12px;
+    color: rgba(156, 156, 156, 1);
   }
 
-  .user-card__dropdown {
+  &__dropdown {
     position: absolute;
     top: 20px;
     right: 16px;
@@ -51,11 +85,14 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 10;
-    width: 120px;
     padding: 8px 0;
     visibility: hidden;
     opacity: 0;
     transition: opacity 0.3s ease;
+    @media (max-width: 768px) {
+      right: 5px;
+      top: 50%;
+    }
   }
 
   &__dropdown.visible {
@@ -70,13 +107,21 @@
   }
 
   &__dropdown li {
-    padding: 8px 16px;
     cursor: pointer;
     transition: background-color 0.2s;
   }
 
-  &__dropdown li:hover {
-    background-color: #f0f0f0;
+  &__dropdown-button {
+    padding: 8px 16px;
+    border: none;
+    background-color: #fff;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    width: 100%;
+    text-align: left;
+    &:hover {
+      background-color: #f0f0f0;
+    }
   }
 
   &__menu {
@@ -84,7 +129,12 @@
     border: none;
     display: block;
     cursor: pointer;
-    transform: translateY(-45px);
+    transform: translate(-10px, -43px);
+    @media (max-width: 768px) {
+      position: absolute;
+      right: 5px;
+      top: 70%;
+    }
   }
 
   &__menu-dot {

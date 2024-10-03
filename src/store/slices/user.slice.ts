@@ -1,15 +1,8 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '..';
 import request, { ERequestStatus } from '../../common/request';
 
-import UserCardType from '../../types/UserCardType';
-
-export interface IUser {
-  id: string;
-  avatar: string;
-  name: string;
-  createdAt: string;
-}
+import IUser from '../../types/IUser';
 
 export interface IUserState {
   users: IUser[];
@@ -22,8 +15,13 @@ const initialState: IUserState = {
 };
 
 export const fetchUsers = createAsyncThunk('user/fetchUsers', async () => {
-  const response = await request.get<UserCardType[]>('users');
-  return response;
+  const response = await request.get<IUser[]>('users');
+  return response.map((user) => ({
+    ...user,
+    archive: false,
+    visible: true,
+    avatar: 'https://http.cat/images/205.jpg',
+  }));
 });
 
 export const deleteUser = createAsyncThunk('user/deleteUser', async (id: number | string) => {
@@ -31,10 +29,13 @@ export const deleteUser = createAsyncThunk('user/deleteUser', async (id: number 
   return response;
 });
 
-export const updateUser = createAsyncThunk('user/updateUser', async (user: IUser) => {
-  const { id, ...info } = user;
-  const response = await request.put<string, IUser>(`users/${id}`, JSON.stringify(info));
-  return response;
+export const updateUser = createAsyncThunk('user/updateUser', (user: IUser, { getState }) => {
+  const { users } = getState() as RootState;
+  const existingUser = users.users.find((u) => u.id === user.id);
+  if (existingUser) {
+    return { ...existingUser, ...user };
+  }
+  throw new Error('User not found');
 });
 
 export const addUser = createAsyncThunk('user/addUser', async (user: IUser) => {
@@ -79,11 +80,11 @@ export const userSlice = createSlice({
         const state = _state;
         state.status = ERequestStatus.LOADING;
       })
-      .addCase(updateUser.fulfilled, (_state, action) => {
+      .addCase(updateUser.fulfilled, (_state, action: PayloadAction<IUser>) => {
         const state = _state;
         state.status = ERequestStatus.SUCCEEDED;
         state.users = state.users.map((u) =>
-          u.id !== action.meta.arg.id ? u : { ...u, ...action.meta.arg },
+          u.id !== action.payload.id ? u : { ...u, ...action.payload },
         );
       })
       .addCase(updateUser.rejected, (_state) => {

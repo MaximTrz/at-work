@@ -1,25 +1,49 @@
 import React, { useState } from 'react';
-import UserCardType from '../../types/UserCardType';
+import classNames from 'classnames';
+import { useAppDispatch } from '../../store/hooks';
+import { updateUser } from '../../store/slices/user.slice';
+
+import IUser from '../../types/IUser';
 
 import './style.scss';
 
-const UserCard: React.FC<{ user: UserCardType }> = ({ user }) => {
+const UserCard: React.FC<{ user: IUser }> = ({ user }) => {
   const [menuVisible, setMenuVisible] = useState(false);
+
+  const dispatch = useAppDispatch();
 
   const toggleMenu = () => {
     setMenuVisible((prevVisible) => !prevVisible);
+  };
+
+  const handleArchiveUser = () => {
+    dispatch(updateUser({ ...user, archive: !user.archive }));
+  };
+
+  const handleHideUser = () => {
+    dispatch(updateUser({ ...user, visible: !user.visible }));
   };
 
   const hideMenu = () => {
     setMenuVisible(false);
   };
 
+  const classes = classNames({
+    'user-card': true,
+    '--archive': user.archive,
+  });
+
   return (
-    <div className="user-card" onMouseLeave={hideMenu}>
-      <img className="user-card__avatar" src={user.avatar} alt={`${user.username}'s avatar`} />
+    <div className={classes} onMouseLeave={hideMenu}>
+      <div className="user-card__avatar-wrapper">
+        <img className="user-card__avatar" src={user.avatar} alt={`${user.username}'s avatar`} />
+      </div>
+
       <div className="user-card__info">
-        <div className="user-card__name">{user.username}</div>
-        <div className="user-card__status">{user.company.name}</div>
+        <div className="user-card__info-top">
+          <div className="user-card__name">{user.username.substring(0, 12)}</div>
+          <div className="user-card__status">{user.company.name}</div>
+        </div>
         <div className="user-card__location">{user.address.city}</div>
       </div>
       <button className="user-card__menu" onClick={toggleMenu} aria-label="User options menu">
@@ -29,9 +53,17 @@ const UserCard: React.FC<{ user: UserCardType }> = ({ user }) => {
       </button>
       <div className={`user-card__dropdown ${menuVisible ? 'visible' : ''}`}>
         <ul>
-          <li>Option 1</li>
-          <li>Option 2</li>
-          <li>Option 3</li>
+          <button className="user-card__dropdown-button" onClick={handleArchiveUser}>
+            Редактировать
+          </button>
+          <li>
+            <button className="user-card__dropdown-button" onClick={handleArchiveUser}>
+              {user.archive ? 'Активировать' : 'Архивировать'}
+            </button>
+          </li>
+          <button className="user-card__dropdown-button" onClick={handleHideUser}>
+            Скрыть
+          </button>
         </ul>
       </div>
     </div>
