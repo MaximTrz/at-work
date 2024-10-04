@@ -5,6 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './Home';
 
 const Users = lazy(() => import('./Users'));
+const UserProfile = lazy(() => import('../components/partials/UserProfile'));
 
 const Router: FunctionComponent = () => (
   <Routes>
@@ -14,6 +15,14 @@ const Router: FunctionComponent = () => (
       element={
         <Suspense fallback={<Spin />}>
           <Users />
+        </Suspense>
+      }
+    />
+    <Route
+      path="user/:userId"
+      element={
+        <Suspense fallback={<Spin />}>
+          <UserProfile />
         </Suspense>
       }
     />

@@ -14,6 +14,9 @@ const initialState: IUserState = {
   status: ERequestStatus.IDLE,
 };
 
+export const selectUserById = (state: RootState, userId: number | string) =>
+  state.users.users.find((user) => user.id === userId);
+
 export const fetchUsers = createAsyncThunk('user/fetchUsers', async () => {
   const response = await request.get<IUser[]>('users');
   return response.map((user) => ({

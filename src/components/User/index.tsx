@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
+import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../store/hooks';
 import { updateUser } from '../../store/slices/user.slice';
 
@@ -12,6 +13,8 @@ const UserCard: React.FC<{ user: IUser }> = ({ user }) => {
 
   const dispatch = useAppDispatch();
 
+  const navigate = useNavigate();
+
   const toggleMenu = () => {
     setMenuVisible((prevVisible) => !prevVisible);
   };
@@ -22,6 +25,10 @@ const UserCard: React.FC<{ user: IUser }> = ({ user }) => {
 
   const handleHideUser = () => {
     dispatch(updateUser({ ...user, visible: !user.visible }));
+  };
+
+  const handleEditUser = () => {
+    navigate(`/user/${user.id}`);
   };
 
   const hideMenu = () => {
@@ -55,7 +62,7 @@ const UserCard: React.FC<{ user: IUser }> = ({ user }) => {
       </button>
       <div className={`user-card__dropdown ${menuVisible ? 'visible' : ''}`}>
         <ul>
-          <button className="user-card__dropdown-button" onClick={handleArchiveUser}>
+          <button className="user-card__dropdown-button" onClick={handleEditUser}>
             Редактировать
           </button>
           <li>

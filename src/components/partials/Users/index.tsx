@@ -26,8 +26,10 @@ const Users: React.FC = () => {
   }
 
   useEffect(() => {
-    dispatch(fetchUsers());
-  }, [dispatch]);
+    if (userList.length === 0) {
+      dispatch(fetchUsers());
+    }
+  }, [dispatch, userList]);
 
   return (
     <div className="users">
