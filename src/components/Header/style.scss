@@ -20,8 +20,11 @@
   }
 
   .header__logo-text {
+    font-family: 'Inter', sans-serif;
+    font-family: Inter;
     font-size: 24px;
-    font-weight: 400;
+    font-weight: 700;
+    line-height: 19.5px;
   }
 
   .header__logo-text strong {
@@ -57,8 +60,6 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-
-    margin-right: 5px;
   }
 
   &__favorite-icon {

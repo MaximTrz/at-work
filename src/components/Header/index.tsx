@@ -13,8 +13,8 @@ const Header = () => (
       </div>
       <div className="header__controls">
         <div className="header__icons">
-          <div className="header__notifications-icon" />
           <div className="header__favorite-icon" />
+          <div className="header__notifications-icon" />
         </div>
         <div className="header__user-info">
           <img

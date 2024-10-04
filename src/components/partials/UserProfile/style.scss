@@ -18,6 +18,9 @@
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
+      @media (max-width: 768px) {
+        background-image: url('../../../assets/сaret_down.svg');
+      }
     }
   }
 }
@@ -48,12 +51,12 @@
 }
 
 .user-profile__avatar {
-  width: 180px;
+  width: 280px;
   height: auto;
   max-height: 300px;
   object-fit: cover;
   margin-bottom: 20px;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
 .user-profile__menu {
