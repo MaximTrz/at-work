@@ -33,112 +33,115 @@
   @media (max-width: 768px) {
     display: block;
   }
-}
 
-.user-profile__sidebar {
-  display: flex;
-  width: 360px;
-  flex-direction: column;
-  align-items: center;
-  background-color: #fff;
-  padding: 40px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  @media (max-width: 768px) {
-    width: auto;
+  &__menu-item {
+    padding: 10px 0;
+    padding-top: 25px;
+    font-size: 16px;
+    color: rgba(156, 156, 156, 1);
+    border-bottom: 1px solid #e0e0e0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  &__menu-item--active {
+    font-weight: bold;
+    color: rgba(22, 22, 22, 1);
+  }
+
+  &__content {
+    flex-grow: 1;
+    background-color: #fff;
+    padding: 42px 60px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    @media (max-width: 768px) {
+      padding: 30px;
+    }
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: 600;
     margin-bottom: 40px;
   }
-}
 
-.user-profile__avatar {
-  width: 280px;
-  height: auto;
-  max-height: 300px;
-  object-fit: cover;
-  margin-bottom: 20px;
-  border-radius: 10px;
-}
-
-.user-profile__menu {
-  width: 100%;
-}
-
-.user-profile__menu-item {
-  padding: 10px 0;
-  padding-top: 25px;
-  font-size: 16px;
-  color: rgba(156, 156, 156, 1);
-  border-bottom: 1px solid #e0e0e0;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.user-profile__menu-item--active {
-  font-weight: bold;
-  color: rgba(22, 22, 22, 1);
-}
-
-.user-profile__content {
-  flex-grow: 1;
-  background-color: #fff;
-  padding: 42px 60px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.user-profile__title {
-  font-size: 24px;
-  font-weight: 600;
-  margin-bottom: 40px;
-}
-
-/* Форма */
-.user-profile__form {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
-
-.user-profile__form-group {
-  display: flex;
-  flex-direction: column;
-  max-width: 420px;
-}
-
-.user-profile__label {
-  font-size: 16px;
-  margin-bottom: 15px;
-}
-
-.user-profile__input {
-  padding: 10px 20px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 50px;
-  transition: border-color 0.3s ease;
-}
-
-.user-profile__input:focus {
-  border-color: #007bff;
-  outline: none;
-}
-
-.user-profile__submit-button {
-  padding: 15px 5px;
-  background-color: #000;
-  color: #fff;
-  font-size: 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  max-width: 170px;
-  border-radius: 50px;
-  @media (max-width: 768px) {
-    max-width: none;
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
   }
-}
 
-.user-profile__submit-button:hover {
-  background-color: #333;
+  &__form-group {
+    display: flex;
+    flex-direction: column;
+    max-width: 420px;
+  }
+
+  &__label {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+
+  &__input {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    transition: border-color 0.3s ease;
+  }
+
+  &__input:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+
+  &__submit-button {
+    padding: 15px 5px;
+    background-color: #000;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    max-width: 170px;
+    border-radius: 50px;
+    @media (max-width: 768px) {
+      max-width: none;
+    }
+  }
+
+  &__submit-button:hover {
+    background-color: #333;
+  }
+
+  &__sidebar {
+    display: flex;
+    width: 360px;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    @media (max-width: 768px) {
+      width: auto;
+      margin-bottom: 40px;
+      padding: 30px;
+    }
+  }
+
+  &__avatar {
+    width: 280px;
+    height: auto;
+    max-height: 300px;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border-radius: 10px;
+  }
+
+  &__menu {
+    width: 100%;
+  }
 }
